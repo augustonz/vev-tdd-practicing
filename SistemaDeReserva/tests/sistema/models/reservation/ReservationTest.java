@@ -18,7 +18,7 @@ public class ReservationTest {
 	public void createTestFlightTest() {
 		testUser = new User();
 		testFlight = new Flight("João Pessoa","Recife","01/01/2023","13:00",true,35.00,48);
-		testReservation = new Reservation(testUser,4,testFlight); //usuario, numero de passagens, voo
+		testReservation = new Reservation(testUser,4,testFlight);
 	}
 	
 	@Test
