@@ -3,4 +3,5 @@ module sistemaDeReserva {
 	
 	exports main;
 	exports sistema.models.user;
+	exports sistema.models.flight;
 }
