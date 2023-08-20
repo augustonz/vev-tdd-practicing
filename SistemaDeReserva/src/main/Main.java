@@ -4,8 +4,6 @@ package main;
 //Os usuários devem ser capazes de selecionar um voo e reservá-lo, inserindo detalhes como nome, número de passageiros e informações de contato.
 //
 //Os usuários devem poder cancelar uma reserva de voo, fornecendo o código de reserva ou identificação pessoal.
-//
-//O sistema deve gerar uma confirmação de reserva contendo detalhes do voo, preço total e informações do passageiro.
 
 
 //Classes
