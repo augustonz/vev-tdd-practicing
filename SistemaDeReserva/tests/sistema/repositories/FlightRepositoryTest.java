@@ -1,6 +1,16 @@
 package sistema.repositories;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +24,7 @@ public class FlightRepositoryTest {
 	final Flight MOCK_FLIGHT1 = new Flight("João Pessoa","Recife","01/01/2023","13:00",true,35.00,48);
 	final Flight MOCK_FLIGHT2 = new Flight("Brasília","São Paulo","21/02/2015","22:00",true,120.00,60);
 	final Flight MOCK_FLIGHT3 = new Flight("São Paulo","Rio de Janeiro","11/07/2002","00:00",true,40.00,12);
+	final Flight MOCK_FLIGHT4 = new Flight("João Pessoa","Rio de Janeiro","21/02/2015","07:00",true,500.00,42);
 	
 	@Before
 	public void createFlightRepository() {
@@ -83,12 +94,88 @@ public class FlightRepositoryTest {
 				+ "Voo disponível? Sim, preço: R$40.0\n"
 				+ "Passageiros: 0/12");
 	}
+
 	
-//	@Test
-//	public void searchFlightsTest() {
-//		flightRepository.addFlight(MOCK_FLIGHT1);
-//		Flight returnedFlight = flightRepository.getFlightById(1);
-//		assertEquals(returnedFlight,MOCK_FLIGHT1);
-//	}
+	@Test
+	public void searchFlightsByOriginTest() {
+		flightRepository.addFlight(MOCK_FLIGHT1);
+		flightRepository.addFlight(MOCK_FLIGHT2);
+		flightRepository.addFlight(MOCK_FLIGHT3);
+		flightRepository.addFlight(MOCK_FLIGHT4);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByOrigin("Recife"), Map.of()));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByOrigin("Brasília"), Map.of(2,MOCK_FLIGHT2)));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByOrigin("João Pessoa"), Map.of(1,MOCK_FLIGHT1,4,MOCK_FLIGHT4)));
+	}
+	
+	@Test
+	public void searchFlightsByDestinationTest() {
+		flightRepository.addFlight(MOCK_FLIGHT1);
+		flightRepository.addFlight(MOCK_FLIGHT2);
+		flightRepository.addFlight(MOCK_FLIGHT3);
+		flightRepository.addFlight(MOCK_FLIGHT4);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByDestination("João Pessoa"), Map.of()));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByDestination("Recife"), Map.of(1,MOCK_FLIGHT1)));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByDestination("Rio de Janeiro"), Map.of(4,MOCK_FLIGHT4,3,MOCK_FLIGHT3)));
+	}
+	
+	@Test
+	public void searchFlightsByPriceTest() {
+		flightRepository.addFlight(MOCK_FLIGHT1);
+		flightRepository.addFlight(MOCK_FLIGHT2);
+		flightRepository.addFlight(MOCK_FLIGHT3);
+		flightRepository.addFlight(MOCK_FLIGHT4);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByPrice(20), Map.of()));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByPrice(35), Map.of(1,MOCK_FLIGHT1)));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByPrice(420), Map.of(1,MOCK_FLIGHT1,2,MOCK_FLIGHT2,3,MOCK_FLIGHT3)));
+	}
+	
+	@Test
+	public void searchFlightsBySeatCountTest() {
+		flightRepository.addFlight(MOCK_FLIGHT1);
+		flightRepository.addFlight(MOCK_FLIGHT2);
+		flightRepository.addFlight(MOCK_FLIGHT3);
+		flightRepository.addFlight(MOCK_FLIGHT4);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsBySeatCount(1), Map.of(1,MOCK_FLIGHT1,2,MOCK_FLIGHT2,3,MOCK_FLIGHT3,4,MOCK_FLIGHT4)));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsBySeatCount(45), Map.of(1,MOCK_FLIGHT1,2,MOCK_FLIGHT2)));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsBySeatCount(100), Map.of()));
+	}
+	
+	@Test
+	public void searchFlightsByDateTest() {
+		flightRepository.addFlight(MOCK_FLIGHT1);
+		flightRepository.addFlight(MOCK_FLIGHT2);
+		flightRepository.addFlight(MOCK_FLIGHT3);
+		flightRepository.addFlight(MOCK_FLIGHT4);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByDate("25/12/2022"), Map.of()));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByDate("01/01/2023"), Map.of(1,MOCK_FLIGHT1)));
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByDate("21/02/2015"), Map.of(2,MOCK_FLIGHT2,4,MOCK_FLIGHT4)));
+	}
+	
+	@Test
+	public void searchFlightsByAvailabilityTest() {
+		flightRepository.addFlight(MOCK_FLIGHT1);
+		flightRepository.addFlight(MOCK_FLIGHT2);
+		flightRepository.addFlight(MOCK_FLIGHT3);
+		flightRepository.addFlight(MOCK_FLIGHT4);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByAvailability(), Map.of(1,MOCK_FLIGHT1,2,MOCK_FLIGHT2,3,MOCK_FLIGHT3,4,MOCK_FLIGHT4)));
+		flightRepository.setAvailability(1,false);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByAvailability(), Map.of(2,MOCK_FLIGHT2,3,MOCK_FLIGHT3,4,MOCK_FLIGHT4)));
+		flightRepository.setAvailability(2,false);
+		flightRepository.setAvailability(3,false);
+		flightRepository.setAvailability(4,false);
+		assertTrue(searchFlightUtil(flightRepository.searchFlightsByAvailability(), Map.of()));
+	}
+	
+	boolean searchFlightUtil(Map<Integer,Flight> responseMap,Map<Integer,Flight> expectedFlights) {
+		
+		for (Entry<Integer, Flight> entry : responseMap.entrySet()) {
+			if (!expectedFlights.containsKey(entry.getKey())) return false;
+			if (!expectedFlights.get(entry.getKey()).equals(entry.getValue())) return false;
+	    }
+		
+		if (responseMap.size()!=expectedFlights.size()) return false;
+		
+		return true;
+	}
 	
 }
