@@ -71,11 +71,9 @@ public class Flight {
 		return maxPassengers-currentPassengers;
 	}
 
-
 	public int getCurrentPassengers() {
 		return currentPassengers;
 	}
-
 
 	public void setCurrentPassengers(int currentPassengers) {
 		this.currentPassengers = currentPassengers;
