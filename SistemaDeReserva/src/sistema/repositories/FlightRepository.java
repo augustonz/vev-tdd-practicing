@@ -28,4 +28,19 @@ public class FlightRepository {
 		flights.remove(id);
 	}
 	
+	public Flight getFlightById(int id) {
+		return flights.get(id);
+	}
+	
+	public String listAllFlights() {
+		String resp = "";
+		for (Map.Entry<Integer, Flight> entry : flights.entrySet()) {
+			resp += entry.getKey() + ": " + entry.getValue() + "\n";
+	    }
+		
+		resp = resp.trim();
+		
+		return resp;
+	}
+	
 }
