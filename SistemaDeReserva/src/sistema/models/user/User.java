@@ -4,14 +4,16 @@ public class User {
 
 	String name;
 	String cpf;
+	String contato;
 	
 	public User() {
-		this("Default Name","000.000.000-00");
+		this("Default Name","000.000.000-00","+55(83)91234-5678");
 	}
 	
-	public User(String name, String cpf) {
+	public User(String name, String cpf,String contato) {
 		this.name=name;
 		this.cpf=cpf;
+		this.contato=contato;
 	}
 
 	public String getName() {
@@ -28,5 +30,43 @@ public class User {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getContato() {
+		return contato;
+	}
+
+	public void setContato(String contato) {
+		this.contato = contato;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuário emissor - Nome: " + name + ", cpf: " + cpf + ", telefone para contato: " + contato;
 	}
 }
