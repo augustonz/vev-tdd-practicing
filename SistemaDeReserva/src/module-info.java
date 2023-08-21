@@ -6,4 +6,5 @@ module sistemaDeReserva {
 	exports sistema.models.flight;
 	exports sistema.models.reservation;
 	exports sistema.repositories;
+	exports sistema.services;
 }

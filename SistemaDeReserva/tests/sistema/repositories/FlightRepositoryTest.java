@@ -61,7 +61,7 @@ public class FlightRepositoryTest {
 	
 	@Test
 	public void listFlightsTest() {
-		assertEquals(flightRepository.listAllFlights(),"");
+		assertEquals(flightRepository.listAllFlights(),"Nenhum voo foi cadastrado até agora\n");
 		
 		flightRepository.addFlight(MOCK_FLIGHT1);
 		flightRepository.addFlight(MOCK_FLIGHT2);

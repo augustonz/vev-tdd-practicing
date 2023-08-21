@@ -39,6 +39,6 @@ public class ReservationTest {
 				+ "\n"
 				+ "Usuário emissor - Nome: Default Name, cpf: 000.000.000-00, telefone para contato: +55(83)91234-5678\n"
 				+ "\n"
-				+ "Preço total da reserva: R$140.0");
+				+ "Passagens compradas: 4, Preço total da reserva: R$140.0");
 	}
 }
