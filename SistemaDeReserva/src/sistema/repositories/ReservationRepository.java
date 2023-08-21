@@ -1,5 +1,5 @@
 package sistema.repositories;
-//Classe muito bem feita , parabens 
+//Classe muito bem feita , parabens OK
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

@@ -11,11 +11,11 @@ import sistema.models.user.User;
 
 public class ReservationRepositoryTest {
 
-	final Flight MOCK_FLIGHT1 = new Flight("Joï¿½o Pessoa","Recife","01/01/2023","13:00",true,35.00,48);
-	final Flight MOCK_FLIGHT2 = new Flight("Brasï¿½lia","Sï¿½o Paulo","21/02/2015","22:00",true,120.00,60);
+	final Flight MOCK_FLIGHT1 = new Flight("João Pessoa","Recife","01/01/2023","13:00",true,35.00,48);
+	final Flight MOCK_FLIGHT2 = new Flight("Brasília","São Paulo","21/02/2015","22:00",true,120.00,60);
 	
-	final User MOCK_USER1 = new User();
-	final User MOCK_USER2 = new User();
+	final User MOCK_USER1 = new User("Fulano","123.456.789-00","+55(83)99982-6571");
+	final User MOCK_USER2 = new User("123","123","123");
 	
 	final Reservation MOCK_RESERVATION1 = new Reservation(MOCK_USER1, 1, MOCK_FLIGHT1);
 	final Reservation MOCK_RESERVATION2 = new Reservation(MOCK_USER1, 6, MOCK_FLIGHT2);

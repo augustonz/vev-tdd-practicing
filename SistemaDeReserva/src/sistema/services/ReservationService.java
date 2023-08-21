@@ -1,5 +1,5 @@
 package sistema.services;
-//Na linha 48 , temos o uso de uma preposi√ß√£o , porem isso n√£o √© muito recomendado, mas a fun√ß√£o esta legivel
+//Na linha 48 , temos o uso de uma preposiÁ„o , porem isso n„o È muito recomendado, mas a funÁ„o esta legivel OK
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -14,6 +14,7 @@ public class ReservationService {
 	
 	FlightService flightService;
 	
+	
 	public ReservationService(FlightService flightService) {
 		reservationRepository = new ReservationRepository();
 		this.flightService = flightService;
@@ -21,9 +22,10 @@ public class ReservationService {
 	}
 	
 	void CreateMockReservations() {
-		reserveFlight(1,new User(),10);
-		reserveFlight(2,new User(),1);
-		reserveFlight(3,new User(),6);
+		User testUser = new User("Fulano","123.456.789-00","+55(83)99982-6571");
+		reserveFlight(1,testUser,10);
+		reserveFlight(2,testUser,1);
+		reserveFlight(3,testUser,6);
 	}
 
 	public boolean cancelReserveId(int reservationId) {
@@ -45,7 +47,7 @@ public class ReservationService {
 		return newReservation;
 	}
 
-	public boolean cancelReservesOfUser(User user) {
+	public boolean cancelReservesUser(User user) {
 		Map<Integer,Reservation> reservationsofUser = reservationRepository.searchReservationsByUser(user);
 		if (reservationsofUser.size()==0) return false;
 		

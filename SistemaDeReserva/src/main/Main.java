@@ -1,5 +1,5 @@
 package main;
-//Parabens codigo muito bem organizado
+//Parabens codigo muito bem organizado OK
 import java.util.Scanner;
 
 import sistema.models.reservation.Reservation;
@@ -11,7 +11,7 @@ public class Main {
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	static User user = new User();
+	static User user = new User("Fulano","123.456.789-00","+55(83)99982-6571");
 	
 	static FlightService flightService;
 	static ReservationService reservationService;
@@ -49,7 +49,7 @@ public class Main {
 				System.exit(0);
 				break;
 			default:
-				System.out.println("Comando nï¿½o reconhecido, tente novamente");
+				System.out.println("Comando não reconhecido, tente novamente");
 				break;
 			}
 		}
@@ -59,7 +59,7 @@ public class Main {
 	static void Menu() {
 		System.out.println(
 				"MENU\n" +
-				"1) Definir usuï¿½rio\n" +
+				"1) Definir usuário\n" +
 				"2) Listar voos\n" +
 				"3) Procurar por voos\n" +
 				"4) Reservar voo\n" +
@@ -76,7 +76,7 @@ public class Main {
 	
 	static void SubMenuCancelarReserva() {
 		System.out.println(
-				"Mï¿½todos de cancelar reserva\n" +
+				"Métodos de cancelar reserva\n" +
 				"1) Cancelar pelo id da reserva\n" +
 				"2) Cancelar todas as reservas do usuï¿½rio\n" +
 				"3) Voltar\n"
@@ -93,23 +93,23 @@ public class Main {
 			if (result) {
 				System.out.println("Reserva cancelada com sucesso!\n");
 			} else {
-				System.out.println("ERRO: Reserva nï¿½o encontrada.\n");
+				System.out.println("ERRO: Reserva não encontrada.\n");
 			}
 			
 			break;
 		case "2":
-			result = reservationService.cancelReservesOfUser(user);
+			result = reservationService.cancelReservesUser(user);
 			
 			if (result) {
 				System.out.println("Reservas canceladas com sucesso!\n");
 			} else {
-				System.out.println("ERRO: Esse usuï¿½rio nï¿½o possui nenhuma reserva.\n");
+				System.out.println("ERRO: Esse usuário não possui nenhuma reserva.\n");
 			}
 			break;
 		case "3":
 			break;
 		default:
-			System.out.println("Comando nï¿½o reconhecido, tente novamente");
+			System.out.println("Comando não reconhecido, tente novamente");
 			break;
 		}
 	}
@@ -118,11 +118,11 @@ public class Main {
 		String text = flightService.showFlights();
 		System.out.println(text);
 		
-		System.out.println("Digite o id do voo que vocï¿½ deseja reservar:");
+		System.out.println("Digite o id do voo que você deseja reservar:");
 		
 		int flightId = sc.nextInt();
 		
-		System.out.println("Digite o nï¿½mero de passagens a reservar:");
+		System.out.println("Digite o número de passagens a reservar:");
 		
 		int passagensNum = sc.nextInt();
 		
@@ -134,10 +134,10 @@ public class Main {
 	static void SubMenuProcurarVoos() {
 		
 		System.out.println(
-				"Opï¿½ï¿½es de pesquisa de voo\n" +
+				"Opções de pesquisa de voo\n" +
 				"1) Buscar por origem\n" +
 				"2) Buscar por destino\n" +
-				"3) Buscar por preï¿½o\n" +
+				"3) Buscar por preço\n" +
 				"4) Buscar por data\n" +
 				"5) Buscar por assentos livres\n" +
 				"6) Buscar por disponibilidade\n" + 
@@ -162,7 +162,7 @@ public class Main {
 			System.out.println(text);
 			break;
 		case "3":
-			System.out.println("Digite o preï¿½o mï¿½ximo da passagem: ");
+			System.out.println("Digite o preço máximo da passagem: ");
 			double doubleInput = sc.nextDouble();
 			text = flightService.searchFlightByPrice(doubleInput);
 			System.out.println(text);
@@ -174,7 +174,7 @@ public class Main {
 			System.out.println(text);
 			break;
 		case "5":
-			System.out.println("Digite o nï¿½mero mï¿½nimo de assentos livres: ");
+			System.out.println("Digite o número mínimo de assentos livres: ");
 			int intInput = sc.nextInt();
 			text = flightService.searchFlightBySeatCount(intInput);
 			System.out.println(text);
@@ -186,7 +186,7 @@ public class Main {
 		case "7":
 			break;
 		default:
-			System.out.println("Comando nï¿½o reconhecido, tente novamente");
+			System.out.println("Comando não reconhecido, tente novamente");
 			break;
 		}
 		
@@ -210,7 +210,7 @@ public class Main {
 		
 		System.out.println("Digite o seu telefone de contato: ");
 		input = sc.nextLine();
-		creatingUser.setContato(input);
+		creatingUser.setContact(input);
 		
 		user = creatingUser;
 	}
