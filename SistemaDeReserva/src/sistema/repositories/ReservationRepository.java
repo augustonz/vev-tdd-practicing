@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import sistema.models.flight.Flight;
 import sistema.models.reservation.Reservation;
+import sistema.models.user.User;
 
 public class ReservationRepository {
 
@@ -51,23 +51,27 @@ public class ReservationRepository {
 		return reservations.get(id);
 	}
 	
-//	Map<Integer,Reservation> getSubMap(List<Integer> keyList) {
-//		Map<Integer, Flight> newMap = new HashMap<>(flights);
-//		newMap.keySet().retainAll(keyList);
-//		return newMap;
-//	}
-//	
-//	public Map<Integer,Reservation> searchFlightsByOrigin(String origin) {
-//		List<Integer> keys = new ArrayList<>();
-//		
-//		for (Entry<Integer, Flight> entry : flights.entrySet()) {
-//	        if (entry.getValue().getOrigin().equals(origin)) {
-//	            keys.add(entry.getKey());
-//	        }
-//	    }
-//		
-//		return getSubMap(keys);
-//	}
+	public boolean hasReservation(int id) {
+		return reservations.keySet().contains(id);
+	}
+	
+	Map<Integer,Reservation> getSubMap(List<Integer> keyList) {
+		Map<Integer, Reservation> newMap = new HashMap<>(reservations);
+		newMap.keySet().retainAll(keyList);
+		return newMap;
+	}
+	
+	public Map<Integer,Reservation> searchReservationsByUser(User user) {
+		List<Integer> keys = new ArrayList<>();
+		
+		for (Entry<Integer, Reservation> entry : reservations.entrySet()) {
+	        if (entry.getValue().getUser().equals(user)) {
+	            keys.add(entry.getKey());
+	        }
+	    }
+		
+		return getSubMap(keys);
+	}
 	
 	public String listAllReservations() {
 		return listReservations(reservations);

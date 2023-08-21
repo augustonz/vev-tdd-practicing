@@ -78,6 +78,21 @@ public class Flight {
 	public void setCurrentPassengers(int currentPassengers) {
 		this.currentPassengers = currentPassengers;
 	}
+	
+	public void occupySeats(int seatNum) {
+		currentPassengers+=seatNum;
+		if (currentPassengers>=maxPassengers) {
+			currentPassengers=maxPassengers;
+			available=false;
+		}
+	}
+	
+	public void unoccupySeats(int seatNum) {
+		currentPassengers-=seatNum;
+		if (currentPassengers<maxPassengers) {
+			available=true;
+		}
+	}
 
 	@Override
 	public int hashCode() {

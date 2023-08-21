@@ -69,6 +69,6 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Informações do Voo:\n" + flight + "\n\n" + user + "\n\nPreço total da reserva: R$" + ticketCount*flight.getPrice();
+		return "Informações do Voo:\n" + flight + "\n\n" + user + "\n\nPassagens compradas: " + ticketCount + ", Preço total da reserva: R$" + ticketCount*flight.getPrice();
 	}
 }

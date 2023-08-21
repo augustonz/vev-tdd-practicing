@@ -123,11 +123,14 @@ public class FlightRepository {
 	
 	public String listFlights(Map<Integer,Flight> flights) {
 		String resp = "";
+		
 		for (Entry<Integer, Flight> entry : flights.entrySet()) {
 			resp += entry.getKey() + ": " + entry.getValue() + "\n";
 	    }
 		
 		resp = resp.trim();
+		
+		if (flights.size()==0) return "Nenhum voo foi cadastrado até agora\n";
 		
 		return resp;
 	}
