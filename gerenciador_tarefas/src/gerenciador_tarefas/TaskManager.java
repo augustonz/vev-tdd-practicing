@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+// Bom uso de retornos em métodos para poder verificar se foi possível realizar uma ação
 public class TaskManager extends TaskManagerTest {
     private List<Task> tasks;
 
@@ -11,6 +13,7 @@ public class TaskManager extends TaskManagerTest {
         tasks = new ArrayList<>();
     }
 
+    
     public boolean createTask(Task task) {
         tasks.add(task);
         return true;
