@@ -6,6 +6,7 @@ public class Task extends TaskManagerTest {
     private String expirationDate;
     private Priority priority;
     
+    
 	public Task(String title, String description, String expirationDate, Priority priority) {
 		this.title = title;
 	    this.description = description;
