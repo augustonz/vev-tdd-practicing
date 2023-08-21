@@ -1,9 +1,26 @@
 package main;
 
+import java.util.Scanner;
+
+import sistema.models.reservation.Reservation;
+import sistema.models.user.User;
+import sistema.services.FlightService;
+import sistema.services.ReservationService;
+
 //Specs
+//Deve-se implementar um sistema que permita que os usuários pesquisem e reservem voos para destinos de sua escolha. 
+//O sistema deve fornecer informações sobre voos disponíveis, datas, horários, preços e permitir que os usuários selecionem e reservem voos.
+//
+//O sistema deve permitir que os usuários pesquisem voos com base em critérios como origem, destino, data e número de passageiros.
+//
+//O sistema deve exibir uma lista de voos disponíveis com informações detalhadas, incluindo origem, destino, horário, preço e lugares disponíveis.
+//
 //Os usuários devem ser capazes de selecionar um voo e reservá-lo, inserindo detalhes como nome, número de passageiros e informações de contato.
 //
 //Os usuários devem poder cancelar uma reserva de voo, fornecendo o código de reserva ou identificação pessoal.
+//
+//O sistema deve gerar uma confirmação de reserva contendo detalhes do voo, preço total e informações do passageiro.
+
 
 
 //Classes
@@ -21,7 +38,212 @@ package main;
 // sistema.repositories.reserba
 
 public class Main {
+	
+	static Scanner sc = new Scanner(System.in);
+	
+	static User user = new User();
+	
+	static FlightService flightService;
+	static ReservationService reservationService;
+	
 	public static void main(String[] args) {
-		System.out.println("This is a test");
+		
+		flightService = new FlightService();
+		reservationService = new ReservationService(flightService);
+		
+		while(true) {
+			Menu();
+			
+			String input = sc.nextLine();
+			
+			switch(input) {
+			case "1":
+				SubMenuUsuario();
+				break;
+			case "2":
+				SubMenuListarVoos();
+				break;
+			case "3":
+				SubMenuProcurarVoos();
+				break;
+			case "4":
+				SubMenuReservarVoo();
+				break;
+			case "5":
+				SubMenuCancelarReserva();
+				break;
+			case "6":
+				SubMenuVerReservas();
+				break;
+			case "7":
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Comando não reconhecido, tente novamente");
+				break;
+			}
+		}
 	}
+	
+	
+	static void Menu() {
+		System.out.println(
+				"MENU\n" +
+				"1) Definir usuário\n" +
+				"2) Listar voos\n" +
+				"3) Procurar por voos\n" +
+				"4) Reservar voo\n" +
+				"5) Cancelar reserva\n" +
+				"6) Ver minhas reservas\n" + 
+				"7) Sair\n"
+		);
+	}
+	
+	static void SubMenuVerReservas() {
+		String text = reservationService.seeReserveConfirmations(user);
+		System.out.println(text);	
+	}
+	
+	static void SubMenuCancelarReserva() {
+		System.out.println(
+				"Métodos de cancelar reserva\n" +
+				"1) Cancelar pelo id da reserva\n" +
+				"2) Cancelar todas as reservas do usuário\n" +
+				"3) Voltar\n"
+		);
+		
+		String input = sc.nextLine();
+		
+		switch(input) {
+		case "1":
+			System.out.println("Digite o id da reserva que deseja cancelar: ");
+			int intInput= sc.nextInt();
+			boolean result = reservationService.cancelReserveId(intInput);
+			
+			if (result) {
+				System.out.println("Reserva cancelada com sucesso!\n");
+			} else {
+				System.out.println("ERRO: Reserva não encontrada.\n");
+			}
+			
+			break;
+		case "2":
+			result = reservationService.cancelReservesOfUser(user);
+			
+			if (result) {
+				System.out.println("Reservas canceladas com sucesso!\n");
+			} else {
+				System.out.println("ERRO: Esse usuário não possui nenhuma reserva.\n");
+			}
+			break;
+		case "3":
+			break;
+		default:
+			System.out.println("Comando não reconhecido, tente novamente");
+			break;
+		}
+	}
+	
+	static void SubMenuReservarVoo() {
+		String text = flightService.showFlights();
+		System.out.println(text);
+		
+		System.out.println("Digite o id do voo que você deseja reservar:");
+		
+		int flightId = sc.nextInt();
+		
+		System.out.println("Digite o número de passagens a reservar:");
+		
+		int passagensNum = sc.nextInt();
+		
+		Reservation newReservation = reservationService.reserveFlight(flightId, user, passagensNum);
+		
+		System.out.println("Reserva criada:\n" + newReservation);
+	}
+	
+	static void SubMenuProcurarVoos() {
+		
+		System.out.println(
+				"Opções de pesquisa de voo\n" +
+				"1) Buscar por origem\n" +
+				"2) Buscar por destino\n" +
+				"3) Buscar por preço\n" +
+				"4) Buscar por data\n" +
+				"5) Buscar por assentos livres\n" +
+				"6) Buscar por disponibilidade\n" + 
+				"7) Voltar\n"
+		);
+		
+		String input = sc.nextLine();
+		
+		String text;
+		
+		switch(input) {
+		case "1":
+			System.out.println("Digite o local de origem: ");
+			input = sc.nextLine();
+			text = flightService.searchFlightByOrigin(input);
+			System.out.println(text);
+			break;
+		case "2":
+			System.out.println("Digite o local de destino: ");
+			input = sc.nextLine();
+			text = flightService.searchFlightByDestination(input);
+			System.out.println(text);
+			break;
+		case "3":
+			System.out.println("Digite o preço máximo da passagem: ");
+			double doubleInput = sc.nextDouble();
+			text = flightService.searchFlightByPrice(doubleInput);
+			System.out.println(text);
+			break;
+		case "4":
+			System.out.println("Digite a data do voo (DD/MM/YYYY): ");
+			input = sc.nextLine();
+			text = flightService.searchFlightByDate(input);
+			System.out.println(text);
+			break;
+		case "5":
+			System.out.println("Digite o número mínimo de assentos livres: ");
+			int intInput = sc.nextInt();
+			text = flightService.searchFlightBySeatCount(intInput);
+			System.out.println(text);
+			break;
+		case "6":
+			text = flightService.searchFlightByAvailability();
+			System.out.println(text);
+			break;
+		case "7":
+			break;
+		default:
+			System.out.println("Comando não reconhecido, tente novamente");
+			break;
+		}
+		
+	}
+	
+	static void SubMenuListarVoos() {
+		String text = flightService.showFlights();
+		System.out.println(text);
+	}
+	
+	static void SubMenuUsuario() {
+		User creatingUser = new User();
+		
+		System.out.println("Digite o seu nome: ");
+		String input = sc.nextLine();
+		creatingUser.setName(input);
+		
+		System.out.println("Digite o seu cpf: ");
+		input = sc.nextLine();
+		creatingUser.setCpf(input);
+		
+		System.out.println("Digite o seu telefone de contato: ");
+		input = sc.nextLine();
+		creatingUser.setContato(input);
+		
+		user = creatingUser;
+	}
+	
+	
 }
