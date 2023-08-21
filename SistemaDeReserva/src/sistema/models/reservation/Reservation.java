@@ -1,4 +1,5 @@
 package sistema.models.reservation;
+//Variaveis com nomes adequados e claros
 
 import sistema.models.flight.Flight;
 import sistema.models.user.User;
@@ -69,6 +70,6 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Informações do Voo:\n" + flight + "\n\n" + user + "\n\nPassagens compradas: " + ticketCount + ", Preço total da reserva: R$" + ticketCount*flight.getPrice();
+		return "Informaï¿½ï¿½es do Voo:\n" + flight + "\n\n" + user + "\n\nPassagens compradas: " + ticketCount + ", Preï¿½o total da reserva: R$" + ticketCount*flight.getPrice();
 	}
 }

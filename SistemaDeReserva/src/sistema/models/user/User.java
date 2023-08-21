@@ -1,5 +1,6 @@
 package sistema.models.user;
-
+//Acredito que esse user default poderia ter sido criado nos testes , não consegui entender bem o motivo para a existencia dele 
+//Como seu design ja esta vindo com variaveis em inglês , sugeriria você trocar o atributo "contato" por "contact" 
 public class User {
 
 	String name;
@@ -73,6 +74,6 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "Usu�rio emissor - Nome: " + name + ", cpf: " + cpf + ", telefone para contato: " + contato;
+		return "Usu�rio emissor - Nome: " + name + ", cpf: " + cpf + ", telefone para contato: " + contato;
 	}
 }
