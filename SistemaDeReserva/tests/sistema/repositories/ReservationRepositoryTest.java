@@ -9,14 +9,10 @@ import sistema.models.flight.Flight;
 import sistema.models.reservation.Reservation;
 import sistema.models.user.User;
 
-//Os usuários devem ser capazes de selecionar um voo e reservá-lo, inserindo detalhes como nome, número de passageiros e informações de contato.
-//
-//Os usuários devem poder cancelar uma reserva de voo, fornecendo o código de reserva ou identificação pessoal.
-
 public class ReservationRepositoryTest {
 
-	final Flight MOCK_FLIGHT1 = new Flight("João Pessoa","Recife","01/01/2023","13:00",true,35.00,48);
-	final Flight MOCK_FLIGHT2 = new Flight("Brasília","São Paulo","21/02/2015","22:00",true,120.00,60);
+	final Flight MOCK_FLIGHT1 = new Flight("Joï¿½o Pessoa","Recife","01/01/2023","13:00",true,35.00,48);
+	final Flight MOCK_FLIGHT2 = new Flight("Brasï¿½lia","Sï¿½o Paulo","21/02/2015","22:00",true,120.00,60);
 	
 	final User MOCK_USER1 = new User();
 	final User MOCK_USER2 = new User();
