@@ -45,8 +45,8 @@ public class TaskManagerTest {
         taskManager.createTask(new Task("Fazer exercícios", "30 minutos de cardio", "2023-08-23", Priority.MEDIUM));
         taskManager.createTask(new Task("Preparar apresentação", "Slides e notas", "2023-08-28", Priority.HIGH));
 
-        List<Task> tasks = taskManager.listTasksByTitle("Fazer exercícios");
-        assertEquals(1, tasks.size());
+        List<Task> tasks = taskManager.listAllTasks();
+        assertEquals(3, tasks.size());
     }
 
     @Test
