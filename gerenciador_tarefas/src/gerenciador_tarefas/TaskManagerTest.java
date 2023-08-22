@@ -7,9 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Falta de testes sobre listagem das tasks por prioridade/por data
-// Nos testes de criação e de deleção adicionar asserts envolvendo o tamanho das lista de tasks (Ex. antes era 0, depois aumentou pra 1)
-// Adicionar o "caminho mau" nos testes de update e deleção onde o usuário tenta interagir com uma task que não existe e o retorno é false
+
 public class TaskManagerTest {
 
     private TaskManager taskManager;
@@ -22,7 +20,13 @@ public class TaskManagerTest {
     @Test
     void createTask() {
         Task task = new Task("Comprar mantimentos", "Comprar leite e pão", "2023-08-25", Priority.MEDIUM);
+        List<Task> tasks = taskManager.listAllTasks();
+        assertEquals(0, tasks.size());
         assertTrue(taskManager.createTask(task));
+        tasks.add(task);
+        assertEquals(1, tasks.size());
+
+     
     }
 
     @Test
@@ -37,9 +41,12 @@ public class TaskManagerTest {
     @Test
     void deleteTask() {
         Task task = new Task("Ir à academia", "Fazer treino de pernas", "2023-08-22", Priority.MEDIUM);
+        List<Task> tasks = taskManager.listAllTasks();
         taskManager.createTask(task);
-
+        tasks.add(task);
+        assertEquals(1, tasks.size());
         assertTrue(taskManager.deleteTaskByTitle("Ir à academia"));
+        
     }
 
     @Test
