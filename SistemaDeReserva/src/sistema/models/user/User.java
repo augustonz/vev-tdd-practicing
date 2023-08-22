@@ -1,20 +1,22 @@
 package sistema.models.user;
-//Acredito que esse user default poderia ter sido criado nos testes , nÃ£o consegui entender bem o motivo para a existencia dele 
-//Como seu design ja esta vindo com variaveis em inglÃªs , sugeriria vocÃª trocar o atributo "contato" por "contact" 
+//Acredito que esse user default poderia ter sido criado nos testes , não consegui entender bem o motivo para a existencia dele  OK,lógica modificada
+//Como seu design ja esta vindo com variaveis em inglês , sugeriria você trocar o atributo "contato" por "contact" OK
 public class User {
 
 	String name;
 	String cpf;
-	String contato;
+	String contact;
 	
 	public User() {
-		this("Default Name","000.000.000-00","+55(83)91234-5678");
+		name="";
+		cpf="";
+		contact="";
 	}
 	
-	public User(String name, String cpf,String contato) {
+	public User(String name, String cpf,String contact) {
 		this.name=name;
 		this.cpf=cpf;
-		this.contato=contato;
+		this.contact=contact;
 	}
 
 	public String getName() {
@@ -33,12 +35,12 @@ public class User {
 		this.cpf = cpf;
 	}
 
-	public String getContato() {
-		return contato;
+	public String getContact() {
+		return contact;
 	}
 
-	public void setContato(String contato) {
-		this.contato = contato;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
 	@Override
@@ -74,6 +76,6 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "Usuï¿½rio emissor - Nome: " + name + ", cpf: " + cpf + ", telefone para contato: " + contato;
+		return "Usuário emissor - Nome: " + name + ", cpf: " + cpf + ", telefone para contato: " + contact;
 	}
 }

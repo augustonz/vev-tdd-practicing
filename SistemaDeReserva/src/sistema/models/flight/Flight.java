@@ -1,5 +1,5 @@
 package sistema.models.flight;
-//Variaveis com nomes adequados e claros
+//Variaveis com nomes adequados e claros OK
 public class Flight {
 	
 	String origin;
@@ -145,8 +145,8 @@ public class Flight {
 
 	@Override
 	public String toString() {
-		return "Voo de " + origin + " para " + destination + ", data: " + date + " ï¿½s " + time
-				+ ".\n" + "Voo disponï¿½vel? " + (available? "Sim":"Nï¿½o") + ", preï¿½o: R$" + price + "\n" + "Passageiros: " + currentPassengers + "/" + maxPassengers;
+		return "Voo de " + origin + " para " + destination + ", data: " + date + " às " + time
+				+ ".\n" + "Voo disponível? " + (available? "Sim":"Não") + ", preço: R$" + price + "\n" + "Passageiros: " + currentPassengers + "/" + maxPassengers;
 	}
 
 }

@@ -16,7 +16,7 @@ public class ReservationTest {
 	
 	@Before
 	public void createTestFlightTest() {
-		testUser = new User();
+		testUser = new User("Fulano","123.456.789-00","+55(83)99982-6571");
 		testFlight = new Flight("João Pessoa","Recife","01/01/2023","13:00",true,35.00,48);
 		testReservation = new Reservation(testUser,4,testFlight);
 	}
@@ -37,7 +37,7 @@ public class ReservationTest {
 				+ "Voo disponível? Sim, preço: R$35.0\n"
 				+ "Passageiros: 0/48\n"
 				+ "\n"
-				+ "Usuário emissor - Nome: Default Name, cpf: 000.000.000-00, telefone para contato: +55(83)91234-5678\n"
+				+ "Usuário emissor - Nome: Fulano, cpf: 123.456.789-00, telefone para contato: +55(83)99982-6571\n"
 				+ "\n"
 				+ "Passagens compradas: 4, Preço total da reserva: R$140.0");
 	}

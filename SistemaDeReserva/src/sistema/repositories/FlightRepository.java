@@ -1,5 +1,5 @@
 package sistema.repositories;
-//Ao longo do codigo aparece alguns caracteres especiais , como na linha 133 , Ã© preciso ter cuidado com isso 
+//Ao longo do codigo aparece alguns caracteres especiais , como na linha 133 , é preciso ter cuidado com isso  OK,erro de encoding
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -130,7 +130,7 @@ public class FlightRepository {
 		
 		resp = resp.trim();
 		
-		if (flights.size()==0) return "Nenhum voo foi cadastrado atï¿½ agora\n";
+		if (flights.size()==0) return "Nenhum voo foi cadastrado até agora\n";
 		
 		return resp;
 	}
