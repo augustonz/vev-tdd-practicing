@@ -7,4 +7,5 @@ module sistemaDeReserva {
 	exports sistema.models.reservation;
 	exports sistema.repositories;
 	exports sistema.services;
+	exports functionalTests;
 }
