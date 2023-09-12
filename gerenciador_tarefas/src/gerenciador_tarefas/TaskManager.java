@@ -15,14 +15,22 @@ public class TaskManager extends TaskManagerTest {
 
     
     public boolean createTask(Task task) {
-        tasks.add(task);
-        return true;
+    	if(task.getTitle() == null || task.getTitle().isEmpty()|| task.getDescription().isEmpty() || task.getExpirationDate().isEmpty()) {
+    		return false;
+    	}else {
+    		tasks.add(task);
+    		return true;
+    	}
+        
     }
 
     public boolean updateTaskByTitle(String title, Task updatedTask) {
+    	
         for (int i = 0; i < tasks.size(); i++) {
+        	
             if (tasks.get(i).getTitle().equals(title)) {
                 tasks.set(i, updatedTask);
+
                 return true;
             }
         }

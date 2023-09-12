@@ -34,7 +34,7 @@ public class TaskManagerTest {
         Task task = new Task("Estudar para a prova", "Revisar capítulo 5", "2023-08-30", Priority.HIGH);
         taskManager.createTask(task);
 
-        Task updatedTask = new Task("Estudar para a prova", "Revisar capítulos 5 e 6", "2023-08-30", Priority.HIGH);
+        Task updatedTask = new Task("Estudar para a prova2", "Revisar capítulos 5 e 6", "2023-08-30", Priority.HIGH);
         assertTrue(taskManager.updateTaskByTitle("Estudar para a prova", updatedTask));
     }
 
