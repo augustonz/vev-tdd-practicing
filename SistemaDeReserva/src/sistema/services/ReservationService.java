@@ -10,7 +10,7 @@ import sistema.repositories.ReservationRepository;
 
 public class ReservationService {
 
-	ReservationRepository reservationRepository;
+	public ReservationRepository reservationRepository;
 	
 	FlightService flightService;
 	

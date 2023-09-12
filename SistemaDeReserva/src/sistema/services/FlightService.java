@@ -1,11 +1,11 @@
 package sistema.services;
-//parabens , classe muito bem feita 
+//parabens , classe muito bem feita OK
 import sistema.models.flight.Flight;
 import sistema.repositories.FlightRepository;
 
 public class FlightService {
 
-	FlightRepository flightRepository;
+	public FlightRepository flightRepository;
 	
 	public FlightService() {
 		flightRepository = new FlightRepository();
@@ -13,10 +13,10 @@ public class FlightService {
 	}
 	
 	public void createMockFlights() {
-		flightRepository.addFlight(new Flight("Joï¿½o Pessoa","Recife","01/01/2023","13:00",true,35.00,48));
-		flightRepository.addFlight(new Flight("Brasï¿½lia","Sï¿½o Paulo","21/02/2015","22:00",true,120.00,60));
-		flightRepository.addFlight(new Flight("Sï¿½o Paulo","Rio de Janeiro","11/07/2002","00:00",true,40.00,12));
-		flightRepository.addFlight(new Flight("Joï¿½o Pessoa","Rio de Janeiro","21/02/2015","07:00",true,500.00,42));
+		flightRepository.addFlight(new Flight("João Pessoa","Recife","01/01/2023","13:00",true,35.00,48));
+		flightRepository.addFlight(new Flight("Brasília","São Paulo","21/02/2015","22:00",true,120.00,60));
+		flightRepository.addFlight(new Flight("São Paulo","Rio de Janeiro","11/07/2002","00:00",true,40.00,12));
+		flightRepository.addFlight(new Flight("João Pessoa","Rio de Janeiro","21/02/2015","07:00",true,500.00,42));
 	}
 
 	public Flight getFlight(int flightId) {
