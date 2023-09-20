@@ -15,7 +15,7 @@ public class TaskManager extends TaskManagerTest {
 
     
     public boolean createTask(Task task) {
-    	if(task.getTitle() == null || task.getTitle().isEmpty()|| task.getDescription().isEmpty() || task.getExpirationDate().isEmpty()) {
+    	if(task.getTitle().equals(" ") || task.getTitle().isEmpty()|| task.getDescription().isEmpty() || task.getExpirationDate().isEmpty()) {
     		return false;
     	}else {
     		tasks.add(task);
