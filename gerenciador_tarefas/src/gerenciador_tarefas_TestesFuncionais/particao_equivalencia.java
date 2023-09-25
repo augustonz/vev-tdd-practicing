@@ -100,7 +100,7 @@ public class particao_equivalencia {
     @Test
     void deleteExistingTaskWithoutTitle() {
         Task task = new Task("", "Descrição", "2023-08-25", Priority.LOW);
-        assertFalse(taskManager.createTask(task)); // Certifica-se de que a tarefa não seja criada sem título.
+        assertFalse(taskManager.createTask(task));
 
         assertFalse(taskManager.deleteTaskByTitle(""));
         assertEquals(0, taskManager.listAllTasks().size());
