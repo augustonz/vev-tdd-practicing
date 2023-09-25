@@ -78,7 +78,7 @@ public class Main {
 		System.out.println(
 				"Métodos de cancelar reserva\n" +
 				"1) Cancelar pelo id da reserva\n" +
-				"2) Cancelar todas as reservas do usuï¿½rio\n" +
+				"2) Cancelar todas as reservas do usuário\n" +
 				"3) Voltar\n"
 		);
 		

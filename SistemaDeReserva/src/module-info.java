@@ -1,5 +1,6 @@
 module sistemaDeReserva {
 	requires junit;
+	requires org.junit.jupiter.api;
 	
 	exports main;
 	exports sistema.models.user;
@@ -8,4 +9,5 @@ module sistemaDeReserva {
 	exports sistema.repositories;
 	exports sistema.services;
 	exports functionalTests;
+	exports junit5Tests;
 }
